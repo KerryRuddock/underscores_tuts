@@ -31,12 +31,10 @@
       creationDate: 20020804 
     }];
     
-    /* _.first(array, [n]) Returns the 1st element of an Array,
-       and [n] is optional 2nd argument for #items to return.
-       ALIASES: _.head and _.take do the same thing */
+    /* _.first(array, [n]) Returns the 1st element of an Array, and [n] is optional 2nd argument for # of items to return. ALIASES: _.head and _.take do the same thing */
     console.log ("\tusing _.first()...");   
     var items = _.first(colors); // returns 1st item as a string.
-    console.table (items); // this doesn't work because items is a string not an array.
+    console.table ( items.split(" ") ); // console.table only works with arrays. Use .split
     var customers = _.first(customer_info, 4) // return 1st four customers
     console.table (customers);  
     
@@ -53,7 +51,29 @@
     var customers = _.initial(customer_info) // return everything except for last entry in array.
     console.table (customers);      
     var customers = _.initial(customer_info, 2) // return everything except for last 2 entries.
-    console.table (customers);     
+    console.table (customers);
+
+    /* _.last(array, [n]) Returns the last element of an array. Passing n will return the last n elements of the array. */
+    console.log ("\tusing _.last()...");     
+    var items = _.last(colors);         // returns last item as a string.
+    console.table ( items.split(" ") ); // console.table only works with arrays. Use .split
+    var customers = _.last(customer_info, 2) // return last 2 customers 
+    console.table (customers);  
+    
+    /* _.rest(array, [n]) skips the 1st element and returns the rest of the Array, and [n] is optional 2nd argument to skip [n] elements and return rest of the Array. ALIASES: _.tail and _.drop do the same thing */
+    console.log ("\tusing _.rest()...");   
+    var items = _.rest(colors); // skip 1st item and return the rest of the array.
+    console.table (items); 
+    var customers = _.rest(customer_info, 2) // skip 2 return rest of customers array
+    console.table (customers);  
+    
+    console.log ("\tusing _.tail()...");       
+    var items2 = _.tail(colors, 1); // skip 1st item, return rest of array
+    console.table (items2);
+    
+    console.log ("\tusing _.drop()...");     
+    var customers2 = _.drop(customer_info, customer_info.length -1) // drop all but last customer
+    console.table (customers2); 
   </script>
 </body>
 </html>
