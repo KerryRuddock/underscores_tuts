@@ -17,16 +17,17 @@
     /* _.compact(array) 
     Returns a copy of the array with all falsy values removed. In JavaScript, false, null, 0, "", undefined and NaN are all falsy. */
     
-    console.log ("\tusing _.compact()...");   
+    console.log ("\tusing _.compact(items)...",items);   
     var compactItems = _.compact(items);  
     console.table (compactItems); 
     
     /* _.flatten(array, [shallow]) 
     Flattens a nested array (the nesting can be to any depth). If you pass shallow (boolean), the array will only be flattened a single level. */
     
-    console.log ("\tusing _.flatten()...");   
+    console.log ("\tusing _.flatten(items2)...",items2);   
     var flattenItems = _.flatten(items2);  
     console.table (flattenItems);
+    
     console.log ("/nFlattened to a single level.")    
     var flattenItems = _.flatten(items2, true);  
     console.table (flattenItems);     

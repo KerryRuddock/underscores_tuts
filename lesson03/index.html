@@ -18,28 +18,28 @@
     /* _.without(array, items)
     Returns a copy of the array with all instances of *values removed from array */
     
-    console.log ("\tusing _.without()...");   
+    console.log ("\tusing _.without(colors,'red','green')...", colors);   
     var withoutColors = _.without(colors, "red", "green");  
     console.table (withoutColors); 
     
     /* _.union(*arrays)
     Computes the union of the passed-in arrays: the list of unique items, in order, that are present in one or more of the arrays. */
     
-    console.log ("\tusing _.union()...");   
+    console.log ("\tusing _.union(colors,colors2,colors2)...", colors, colors2, colors3);   
     var unionColors = _.union(colors, colors2, colors3);  
     console.table (unionColors);
     
     /* _.intersection(*arrays)
     Computes the list of values that are the intersection of all the arrays. Each value in the result is present in each of the arrays. */
     
-    console.log ("\tusing _.intersection()...");   
+    console.log ("\tusing _.intersection(colors,colors2,colors2)...", colors, colors2, colors3); 
     var intersectionColors = _.intersection(colors, colors2, colors3);  
     console.table (intersectionColors);
  
     /* _.difference(array, *others)
     Similar to without, but returns the values from array that are not present in the other arrays. */
     
-    console.log ("\tusing _.difference()...");   
+    console.log ("\tusing _.difference(colors,colors2,colors2)...", colors, colors2, colors3); 
     var differenceColors = _.difference(colors, colors2, colors3);  
     console.table (differenceColors); 
   </script>
