@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Array functions: _.uniq 
+  </h2>
+  <script>
+    /* Bug in chrome: refresh page in console to see console.table https://bugs.chromium.org/p/chromium/issues/detail?id=801986 */
+    
+    "use strict";
+    var numArray = [1,1,1,1,2,2,2,3,4,5,5,5,6,7,7,7];
+    var transportNames = ['car','bus','airplane','boat','train','bicycle','bus','car'];
+    var transports = [
+      { name: 'airplane', type: 'air' },
+      { name: 'car', type: 'road' },
+      { name: 'bus', type: 'road' },
+      { name: 'boat', type: 'water' },
+      { name: 'train', type: 'rail' },
+      { name: 'bicycle', type: 'road' }
+    ];
+   
+    /* _.uniq(array, [isSorted],[iteratee]) 
+    Produces a duplicate-free version of the array, using === to test object equality. In particular only the first occurrence of each value is kept. If you know in advance that the array is sorted, passing true for isSorted will run a much faster algorithm. If you want to compute unique items based on a transformation, pass an iteratee function. */
+    
+    console.log ("\tusing _.uniq(numArray, true)...",numArray);   
+    var uniqNumArray = _.uniq(numArray);  
+    console.table (uniqNumArray); 
+    
+    console.log ("\tusing _.uniq(transportNames)...",transportNames);   
+    var uniqTransportNames = _.uniq(transportNames);  
+    console.table (uniqTransportNames);
+    
+    console.log ("\tusing _.uniq(transports, function(item, index, items){ returns a duplicate-free [] })\n\t\t.map(function(item) return item.type ...",transports);   
+    console.table (_.uniq( transports, function(item, index, items) {
+      if (index === 0) return;
+      
+      for (var x=0; x<index; x++){
+         if (item.type === items[x].type) {
+            return; // duplicate found
+         }
+      }
+      
+      return item;
+    }).map(function(item) {
+      return item.type;
+    }));    
+
+  </script>
+</body>
+</html>
