@@ -5,40 +5,49 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
 </head>
 <body>
-  <h2>underscores.js - Array functions: _.zip, _.object, _.range 
+  <h2>underscores.js - Array functions: _.zip, 
   </h2>
   <script>
     /* Bug in chrome: refresh page in console to see console.table https://bugs.chromium.org/p/chromium/issues/detail?id=801986 */
     
     "use strict";
-    var a1 = [1,"John","Smith"], a2 = [2,"Alice","Taylor"], 
-        a3 = [3,"Bob","Davis"], a4 = [4,"John","Doe"];
-    
+    var numArray = [1,1,1,1,2,2,2,3,4,5,5,5,6,7,7,7];
+    var transportNames = ['car','bus','airplane','boat','train','bicycle','bus','car'];
+    var transports = [
+      { name: 'airplane', type: 'air' },
+      { name: 'car', type: 'road' },
+      { name: 'bus', type: 'road' },
+      { name: 'boat', type: 'water' },
+      { name: 'train', type: 'rail' },
+      { name: 'bicycle', type: 'road' }
+    ];
    
-    /* _.zip(*arrays) 
-    Merges together the values of each of the arrays with the values at the corresponding position. Useful when you have separate data sources that are coordinated through matching array indexes. Use with apply to pass in an array of arrays. If you're working with a matrix of nested arrays, this can be used to transpose the matrix. */
+    /* _.zip(*arrays)
+Merges together the values of each of the arrays with the values at the corresponding position. Useful when you have separate data sources that are coordinated through matching array indexes. Use with apply to pass in an array of arrays. If you're working with a matrix of nested arrays, this can be used to transpose the matrix. */
     
-    console.log ("\tusing _.zip(a1,a2,a3,a4)...",a1,a2,a3,a4);
-    console.log ("\n\tBasically turns 4 arrays of 3 items into 3 arrays of 4 items");
-    var zipArrays = _.zip(a1,a2,a3,a4);
-    console.table (zipArrays);
+    console.log ("\tusing _.uniq(numArray, true)...",numArray);   
+    var uniqNumArray = _.uniq(numArray);  
+    console.table (uniqNumArray); 
     
-    /* _._.object(list, [values]) 
-    Converts arrays into objects. Pass either a single list of [key, value] pairs, or a list of keys, and a list of values. If duplicate keys exist, the last value wins. */
+    console.log ("\tusing _.uniq(transportNames)...",transportNames);   
+    var uniqTransportNames = _.uniq(transportNames);  
+    console.table (uniqTransportNames);
     
-    console.log ("\tusing _.object(['id','firstName','lastName'],[1,'Bob','Smith'])");
-    var obj = _.object(['id','firstName','lastName'],[1,'Bob','Smith']);
-    console.table (obj);
-    
-    /* _.range([start], stop, [step]) 
-    A function to create flexibly-numbered lists of integers, handy for each and map loops. start, if omitted, defaults to 0; step defaults to 1. Returns a list of integers from start (inclusive) to stop (exclusive), incremented (or decremented) by step, exclusive. Note that ranges that stop before they start are considered to be zero-length instead of negative — if you'd like a negative range, use a negative step. */
+    console.log ("\tusing _.uniq(transports, function(item, index, items){ returns a duplicate-free [] })\n\t\t.map(function(item) return item.type ...",transports);   
+    console.table (_.uniq( transports, function(item, index, items) {
+      if (index === 0) return;
+      
+      for (var x=0; x<index; x++){
+         if (item.type === items[x].type) {
+            return; // duplicate found
+         }
+      }
+      
+      return item;
+    }).map(function(item) {
+      return item.type;
+    }));    
 
-    console.log ("\tusing _.range(20) to generate an array of 20 numbers starting with number 0");
-    console.log ( _.range(20) );
-    
-    console.log ("\tusing _.range(1,20) to generate an array of 20 numbers starting with number 1");
-    console.log ( _.range(1,20) );
- 
   </script>
 </body>
 </html>
