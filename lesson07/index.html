@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.map</h2>
+  <h3>Data for example#3 of underscore _.map function</h3>
+  <ul id="carList">
+    <li>Compact</li>
+    <li>Mid-Size</li>
+    <li>Full Size</li>
+    <li>Light Pickup</li>
+    <li>Heavy Duty Pickup</li>
+  </ul>
+  <script>
+    /* Bug in chrome: refresh page in console to see console.table https://bugs.chromium.org/p/chromium/issues/detail?id=801986 */
+
+    (function() {
+    
+      "use strict";
+      
+      var colors = ["red","blue","green","black"];
+      var mappedItems = _.map(colors, function(value, key, items) {
+        return String(value).toUpperCase();
+      });
+      
+      var person = {
+         name: "Bob",
+         age: 32,
+         weight: 200,
+         hairColor: "red"
+      };
+      var personPropsCap = _.map(person, function(value, key) {
+         return String(key).toUpperCase();
+      });
+      
+      var carList = document.getElementById("carList");
+      var mappedCarList = _.map(carList.childNodes, function(value){
+        return value.innerHTML;
+      })
+      
+     
+      /* _.map(list, iteratee, [context]) Alias: collect 
+      Produces a new array of values by mapping each value in list through a transformation function (iteratee). The iteratee is passed three arguments: the value, then the index (or key) of the iteration, and finally a reference to the entire list.*/
+
+      console.log ("\tusing _.map(colors, function(value, key, items)...", colors);
+      console.log ("The CB function, or iteratee returns an array of items in uppercase.", mappedItems);
+
+      console.log ("\tusing _.map(person, function(value, key)...", person);
+      console.log ("The CB function, or iteratee returns an array of items in uppercase.", personPropsCap);
+      
+      console.log ("\tusing _.map(carList.childNodes, function(value)...", carList);
+      console.log ("returns a list of nodes, that are filtered, removing undefined nodes", mappedCarList,_.filter(mappedCarList, undefined));
+    })();
+  </script>
+</body>
+</html>

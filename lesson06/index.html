@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Array functions: _.indexOf, _.lastIndexOf, sortedIndex
+  </h2>
+  <script>
+    /* Bug in chrome: refresh page in console to see console.table https://bugs.chromium.org/p/chromium/issues/detail?id=801986 */
+    
+    "use strict";
+    var colors = ["red","blue","orange","yellow","black","red","purple", "blue","white"];
+   
+    /* _.indexOf(array, value, [isSorted])
+    Returns the index at which value can be found in the array, or -1 if value is not present in the array. If you're working with a large array, and you know that the array is already sorted, pass true for isSorted to use a faster binary search ... or, pass a number as the third argument in order to look for the first matching value in the array after the given index. */
+    
+    console.log ("\tusing _.indexOf(colors, 'blue')...", colors);   
+    console.log ("index of blue is ", _.indexOf(colors, "blue"));  
+    
+    /* _.lastIndexOf(array, value, [fromIndex])
+    Returns the index of the last occurrence of value in the array, or -1 if value is not present. Pass fromIndex to start your search at a given index. */
+    
+    console.log ("\n\tusing _.lastIndexOf(colors, 'blue')...", colors);   
+    console.log ("Last index of blue is ", _.lastIndexOf(colors, "blue"));  
+ 
+    /* _.sortedIndex(list, value, [iteratee], [context]) 
+    Uses a binary search to determine the index at which the value should be inserted into the list in order to maintain the list's sorted order. If an iteratee function is provided, it will be used to compute the sort ranking of each value, including the value you pass. The iteratee may also be the    string name of the property to sort by (eg. length). */
+    
+    var tens = _.range(0,101,10);
+    console.log ("\n\tusing _.sortedIndex(tens, 15)...", JSON.stringify(tens));
+    console.log("Index to insert at",_.sortedIndex(tens,15));
+    tens.splice(_.sortedIndex(tens,15),0,15);
+    console.log("after splice", JSON.stringify(tens));
+  </script>
+</body>
+</html>
