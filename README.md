@@ -2,7 +2,7 @@
 You Tube series by TopTal on learning underscore.js
 Each lesson# (video) is an html file with script calling underscore functions.
 
-### <img src="images/tab_folder.jpg" style="vertical-align:middle" width="64">Lesson01 - _.first, _.initial, _.last, _.rest
+### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson01 - _.first, _.initial, _.last, _.rest
 ### <img src="images/tab_folder.jpg" style="vertical-align:middle" width="64">Lesson02 - _.compact, _.flatten
 ### <img src="images/tab_folder.jpg" style="vertical-align:middle" width="64">Lesson03 - _.without,  _.union, _.intersection, _.difference
 ### <img src="images/tab_folder.jpg" style="vertical-align:middle" width="64">Lesson04 - _.uniq
