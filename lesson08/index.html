@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.reduce</h2>
+
+  <script>
+    /* Bug in chrome: refresh page in console to see console.table https://bugs.chromium.org/p/chromium/issues/detail?id=801986 */
+
+    (function() {
+    
+      "use strict";
+      
+      /* reduce_.reduce(list, iteratee, [memo], [context]) Aliases: inject, foldl 
+      Also known as inject and foldl, reduce boils down a list of values into a single value. Memo is the initial state of the reduction, and each successive step of it should be returned by iteratee. The iteratee is passed four arguments: the memo, then the value and index (or key) of the iteration, and finally a reference to the entire list.
+
+      If no memo is passed to the initial invocation of reduce, the iteratee is not invoked on the first element of the list. The first element is instead passed as the memo in the invocation of the iteratee on the next element in the list. */
+      
+      var numbers = [1,2,3,4,5];
+      var colors = ["red","blue","green","yellow"];
+      //var t0 = performance.now();
+
+      var value = _.reduce(numbers, function(lastReducedValue, item) {
+        return lastReducedValue + item;
+      });
+      
+      //var t1 = performance.now();
+      //console.log("Call to _.reduce took " + (t1 - t0) + " milliseconds.")
+      
+      console.log ("\tusing _.reduce(numbers, function(lastReducedValue, item)...", numbers);
+      console.log ("\tThe reduced value is: ", value);
+      
+      //var t2 = performance.now();
+      for (let i = 0, j = 0; i < numbers.length; i++) {
+         j += numbers[i];
+         value = j;
+      }
+      //var t3 = performance.now();
+      //console.log("Call to forLoop accumulation took " + (t3 - t2) + " milliseconds.")
+      console.log ("\tThe reduced value is: ", value);    
+      
+      console.log ("\tusing _.reduce to build an unordered list (colors,  function(lastReducedValue, item, index, items)...", colors);
+      var listColors = _.reduce(colors,  function(lastReducedValue, item, index, items) {
+        if (index === 1) {
+          lastReducedValue = "<ul><li>" + lastReducedValue + "</li>";
+        }
+        var result = lastReducedValue + "<li>" + item + "</li>";
+        
+        if (index === (items.length -1)) {
+           result += "</ul>"
+        }
+        
+        return result;
+      });
+      console.log ("\tlistColors: ", listColors);
+      
+    })();
+  </script>
+</body>
+</html>

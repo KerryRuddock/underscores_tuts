@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.contains</h2>
+
+  <script>
+    /* Bug in chrome: refresh page in console to see console.table https://bugs.chromium.org/p/chromium/issues/detail?id=801986 */
+
+    (function() {
+    
+      "use strict";
+      
+      /* _.contains(list, value, [fromIndex]) Alias: includes 
+      Returns true if the value is present in the list. Uses indexOf internally, if list is an Array. Use fromIndex to start your search at a given index. */
+      
+      var numbers = [1,2,3,4,5,6,7,8];
+      var widgets = [
+        { color: "blue" },
+        { color: "red"  },
+        { color: "yellow"}];
+      
+      var result1 = _.contains(numbers, 3);
+      var result2 = _.contains(numbers, 9);
+        
+      console.log ("\tusing _.contains(numbers, 3)", numbers, "The result is", result1 );
+      console.log ("\tusing _.contains(numbers, 9)", numbers, "The result is", result2 );
+      console.log ("Note: don't use to find an object in an array of objects. It fails because it is comparing memory references")
+    })();
+  </script>
+</body>
+</html>
