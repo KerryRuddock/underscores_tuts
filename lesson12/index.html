@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.invoke</h2>
+
+  <script>
+    /* Bug in chrome: refresh page in console to see console.table https://bugs.chromium.org/p/chromium/issues/detail?id=801986 */
+
+    (function() {
+    
+      "use strict";
+      
+      /* _.invoke(list, methodName, *arguments)
+        Calls the method named by methodName on each value in the list. Any extra arguments passed to invoke will be forwarded on to the method invocation. [note: _.map can be used too] */
+      
+      function power( exponent ) {
+        return Math.pow( this, exponent );
+      }
+      var nums = _.range(10);
+      var result = _.invoke( nums, power, 2 );
+      
+      console.log ("\tusing _.invoke( nums, power, 2)", nums);
+      console.log ("\treturns an array: ", result);
+ 
+    })();
+  </script>
+</body>
+</html>

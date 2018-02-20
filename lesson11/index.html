@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.reject, _.some, _.every</h2>
+
+  <script>
+    /* Bug in chrome: refresh page in console to see console.table https://bugs.chromium.org/p/chromium/issues/detail?id=801986 */
+
+    (function() {
+    
+      "use strict";
+      
+      /* _.reject(list, predicate, [context]) 
+        Returns the values in list without the elements that the truth test (predicate) passes.
+        The opposite of how _.filter works (lesson09). */
+      
+      var nums = [1,2,3,4,5,6,7,8];
+      
+      var result1 = _.reject( nums, function( value, index, originalList ) {
+        // false values are included in the final list
+        return value > 5;  // so 6,7,8 are NOT included in final list.
+      });
+      console.log ("\tusing _.reject(nums, function(value, index, originalList)", nums, "The result is", result1 );
+      
+      /* _.some(list, [predicate], [context]) Alias: any
+        Returns true if any of the values in the list pass the predicate truth test.
+        Short-circuits and stops traversing the list if a true element is found. */
+        
+      var result2 = _.some( nums, function( value, index, originalList ) {
+        return value > 5;  // returns true
+      });
+      console.log ("\tusing _.some(nums, function(value, index, originalList)", nums, "The result is", result2 ); 
+  
+      /* _.every(list, [predicate], [context]) Alias: all
+        Returns true if all of the values in the list pass the predicate truth test.
+        Short-circuits and stops traversing the list if a false element is found. */
+        
+      var result3 = _.every( nums, function( value, index, originalList ) {
+        return value > 1;  // returns false;
+      });
+      console.log ("\tusing _.every(nums, function(value, index, originalList)", nums, "Using a predicate of value > 1 result is", result3 ); 
+      
+      var result4 = _.every( nums, function( value, index, originalList ) {
+        return value > 0;  // returns true;
+      });
+      console.log ("\tusing _.every(nums, function(value, index, originalList)", nums, "Using a predicate of value > 0 result is", result4 );           
+
+    
+    })();
+  </script>
+</body>
+</html>
