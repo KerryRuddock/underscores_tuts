@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.each</h2>
+  <h3>Data for example#3 of underscore _.each function</h3>
+  <ul id="carList">
+    <li>Compact</li>
+    <li>Mid-Size</li>
+    <li>Full Size</li>
+    <li>Light Pickup</li>
+    <li>Heavy Duty Pickup</li>
+  </ul>
+
+  <script>
+ 
+    (function() {
+    
+      "use strict";
+      
+      /* _.each each_.each(list, iteratee, [context]) Alias: forEach 
+        Iterates over a list of elements, yielding each in turn to an iteratee function. The iteratee is bound to the context object, if one is passed. Each invocation of iteratee is called with three arguments: (element, index, list). If list is a JavaScript object, iteratee's arguments will be (value, key, list). Returns the list for chaining.
+
+        Note: Collection functions work on arrays, objects, and array-like objects such as arguments, NodeList and similar. But it works by duck-typing, so avoid passing objects with a numeric length property. It's also good to note that an each loop cannot be broken out of — to break, use _.find instead. */
+      
+      var colors = ["red", "blue", "yellow", "white"];
+  
+      console.log ("\tusing _.each( colors, function( value, key, items)...", colors);
+      _.each( colors, function( value, key, items ) {
+        console.log( key + " + " + value);
+      });
+  
+       // Example 2:
+       var obj = {
+        name: "Bob",
+        age: 32,
+        weight: 150,
+        eyeColor: "brown"
+      };
+      
+      console.log ("\tusing _.each( obj, function( value, key, items)...", obj);
+      _.each( obj, function( value, key, items ) {
+        console.log( key + " + " + value);
+      });
+
+      // Example 3:
+      var carList = document.getElementById("carList");
+      
+      console.log ("\tusing _.each( carList.childNodes, function( value, key, items)...", carList);
+      _.each( carList.childNodes, function( value, key, items ) {
+        console.log( key + " + " + value);
+        console.dir(value);
+      });
+      
+    })();
+  </script>
+</body>
+</html>

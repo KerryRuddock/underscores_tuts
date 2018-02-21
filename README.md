@@ -15,4 +15,5 @@ Each lesson# (video) is an html file with script calling underscore functions.
 ### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson11 - _.reject, _.some, _.every
 ### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson12 -_.invoke
 ### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson13 - _.pluck, _.shuffle
-
+### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson14 - _.each
+### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson15 - _.where, _.findWhere
