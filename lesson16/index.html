@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.max and _.min</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> Bob Smith</td>
+        <td>42</td>
+        <td>Atlanta</td>
+      </tr>
+      <tr>
+        <td>Trey Jones</td>
+        <td>26</td>
+        <td>Dublin</td>
+      <tr>
+        <td>Phil Lee</td>
+        <td>47</td>
+        <td>San Diego</td>
+      </tr>
+      <tr>
+        <td>Matt Taylor</td>
+        <td>32</td>
+        <td>Bangkok</td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+ 
+    (function() {
+    
+      "use strict";
+      
+      /* _.max( list, [iteratee], [context] ) 
+        Returns the maximum value in list. If an iteratee function is provided, it will be used on each value to generate the criterion by which the value is ranked. -Infinity is returned if list is empty, so an isEmpty guard may be required. Non-numerical values in list will be ignored.*/
+        
+   
+      console.log ("\tusing _.max( [1,2,3,4] )...", _.max( [1,2,3,4,] ), "\n");
+      console.log ("\tusing _.min( [1,2,3,4] )...", _.min( [1,2,3,4,] ), "\n\n");
+   
+      function getAllRows() {
+        var childNodes = document.getElementsByTagName("tbody")[0].childNodes;
+        return _.filter( childNodes, function(item) {
+          return item.tagName === "TR";
+        });
+      }
+      
+      function getAge( row, index, originalRows ) {
+        return parseInt(row.childNodes[3].textContent, 10 );
+      }
+      
+      var rows = getAllRows();
+      var rowMaxAge = _.max(rows, getAge);
+      var rowMinAge = _.min(rows, getAge);
+      console.log ("\tusing _.max(rows, getAge) to get table row with highest age");
+      console.log(rowMaxAge.innerHTML);
+      console.log ("\tusing _.min(rows, getAge) to get table row with highest age");
+      console.log(rowMinAge.innerHTML);
+      
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <style>
+    th { cursor: pointer; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.groupBy</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th id="thAge">Age</th>
+        <th id="thCity">City</th>
+        <th id ="thGender">Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> Bob Smith</td>
+        <td>42</td>
+        <td>Atlanta</td>
+        <td>Male</td>
+      </tr>
+      <tr>
+        <td>Trey Jones</td>
+        <td>26</td>
+        <td>Dublin</td>
+        <td>Male</td>
+      <tr>
+        <td>Phil Lee</td>
+        <td>47</td>
+        <td>San Diego</td>
+        <td>Male</td>
+      </tr>
+      <tr>
+        <td>Matt Taylor</td>
+        <td>32</td>
+        <td>Bangkok</td>
+        <td>Male</td>
+      </tr>
+      <tr>
+        <td>Susan James</td>
+        <td>34</td>
+        <td>Atlanta</td>
+        <td>Female</td>
+      </tr>
+      <tr>
+        <td>Cynthia Peters</td>
+        <td>24</td>
+        <td>San Diego</td>
+        <td>Female</td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+
+    (function ( document ) {
+
+      "use strict";
+
+      /* _.groupBy(list, iteratee, [context])
+        Splits a collection into sets, grouped by the result of running each value through iteratee.    If iteratee is a string instead of a function, groups by the property named by iteratee on each of the values.*/
+
+      var ageCol = document.getElementById("thAge");
+      var cityCol =  document.getElementById("thCity");
+      var genderCol =  document.getElementById("thGender");
+      ageCol.addEventListener("click", groupCol, false );
+      cityCol.addEventListener("click", groupCol, false );
+      genderCol.addEventListener("click", groupCol, false );
+
+      function groupCol() {
+        var columnNodeIndex = ( this.cellIndex * 2) + 1;
+        var groupByFuncIndex = this.cellIndex -1;
+        var rows = getAllRows();
+
+        // array of group by functions, one for each table columnNodeIndex
+        var groupByValueFuncs = getGroupByValueFuncs();
+
+        // add group by code here...
+        var groupedRows = _.groupBy( rows, function( row, index, originalRows ) {
+            return groupByValueFuncs[groupByFuncIndex] (
+              row.childNodes[columnNodeIndex].textContent
+            );
+        }); // _.groupedBy
+
+        // retrieve the group keys and sort them
+        var groups = _.keys( groupedRows );
+        var sortedGroups = _.sortBy( groups );
+
+        // create the new grouped and sorted tbody
+        var tbodyNodeNew = document.createElement( "tbody" );
+
+        _.each( sortedGroups, function( key ) {
+
+          // column to display the group header
+          var tdGroup = document.createElement( "td" );
+          tdGroup.setAttribute( "colspan", 4 );
+          tdGroup.setAttribute( "style", "font-weight:bold;" );
+          tdGroup.textContent = key;
+
+          // row for the group header
+          var trGroup = document.createElement( "tr" );
+          trGroup.setAttribute( "data-group-header", true );
+          trGroup.appendChild( tdGroup );
+
+          // add the group header row to the tbody
+          tbodyNodeNew.appendChild( trGroup );
+
+          // add the data rows for the groups
+          _.each( groupedRows[key], function( row ) {
+            tbodyNodeNew.appendChild( row );
+          });
+
+        }); // _.each( sortedGroups, function( key) )
+
+        // replace the original tbody with a new groupd and sorted tbody
+        var tableNode = getFirstNodeByTagName( "table" );
+        var tbodyNodeOld = getFirstNodeByTagName( "tbody" );
+        tableNode.replaceChild( tbodyNodeNew, tbodyNodeOld );
+      }
+      console.log ("\tusing _.groupBy(  )...", _.groupBy(  ), "\n");
+
+      // helper functions
+
+      function getAllRows() {
+        var childNodes = document.getElementsByTagName("tbody")[0].childNodes;
+        return _.filter( childNodes, function(item) {
+          return item.tagName === "TR";
+          // DONT USE CODE IN VIDEO: return item.tagName === "TR" && item.getAttribute("data-group-header");
+        });
+      }
+
+      function getFirstNodeByTagName( tagName ) {
+        return _.first( document.getElementsByTagName ( tagName ));
+      }
+
+      function getGroupByValueFuncs() {
+
+        function textContent ( textContent ) {
+          return textContent;
+        }
+
+        function numRange( textContent ) {
+          var f = parseFloat( textContent );
+          f = f / 10.0;
+          f = Math.floor(f) * 10;
+          return String(f) + " to " + String( f + 10 );
+        }
+
+        return [
+          numRange,
+          textContent,
+          textContent
+        ];
+      }
+
+    })( document );
+  </script>
+</body>
+</html>
