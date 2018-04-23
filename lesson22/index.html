@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.partition</h2>
+
+  <script>
+
+    (function() {
+    
+      "use strict";
+      
+      /* _.partition(list, predicate) 
+        Split list into two arrays: one whose elements all satisfy predicate and one whose elements all do not satisfy predicate. predicate is transformed through iteratee to facilitate shorthand syntaxes. */
+      
+      var numbers = _.range(1, 10);
+      var result =  _.partition( numbers, function(num) {
+        return num > 4;
+      });
+      console.log("Split list into two arrays: one whose elements all satisfy predicate and one whose elements all do not satisfy predicate");
+      console.log ("\tusing _.partition( numbers, function(num) {return num > 4; } )...", numbers, result);
+      
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>     
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.toArray</h2>
+
+  <script>
+
+    (function() {
+    
+      "use strict";
+      
+      /* _.toArray(list, predicate) 
+        Creates a real Array from the list (anything that can be iterated over). Useful for transmuting the arguments object. */
+      
+      function myFunc() {
+      
+        var argList = _.toArray( arguments );
+        console.log("Convert the non-array arguments to a real array.  Expand on __proto__ to see");
+        console.log ("\tusing _.toArray( arguments )...", arguments, argList );
+
+      }
+      
+      myFunc( 1, 2, 3, 4, 5, 6 );
+      console.log("_.toArray() - Creates a real Array from a list (anything that can be iterated over)");
+      
+      var person = {
+        firstName: "Bob",
+        lastName: "Smith",
+        age: 43,
+        eyeColor: "blue"
+      };
+      var personArr = _.toArray( person );
+      
+      console.log ("\tusing personArr = _.toArray( person )...", person, personArr );
+  
+      
+    })();
+  </script>
+</body>
+</html>

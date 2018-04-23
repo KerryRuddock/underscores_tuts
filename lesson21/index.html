@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> </title>
+  <style>
+    th { cursor: pointer; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+</head>
+<body>
+  <h2>underscores.js - Collection functions: _.countBy</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th id="thAge">Age</th>
+        <th id="thCity">City</th>
+        <th id ="thGender">Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="bsmith">
+        <td>Bob Smith</td>
+        <td>42</td>
+        <td>Atlanta</td>
+        <td>Male</td>
+      </tr>
+      <tr id="tjones">
+        <td>Trey Jones</td>
+        <td>26</td>
+        <td>Dublin</td>
+        <td>Male</td>
+      <tr id="plee">
+        <td>Phil Lee</td>
+        <td>47</td>
+        <td>San Diego</td>
+        <td>Male</td>
+      </tr>
+      <tr id="mtaylor">
+        <td>Matt Taylor</td>
+        <td>32</td>
+        <td>Bangkok</td>
+        <td>Male</td>
+      </tr>
+      <tr id="sjames">
+        <td>Susan James</td>
+        <td>34</td>
+        <td>Atlanta</td>
+        <td>Female</td>
+      </tr>
+      <tr id="cpeters">
+        <td>Cynthia Peters</td>
+        <td>24</td>
+        <td>San Diego</td>
+        <td>Female</td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+
+    (function ( document ) {
+
+      "use strict";
+
+      /* _.countBy(list, iteratee, [context]) 
+       Sorts a list into groups and returns a count for the number of objects in each group. Similar to groupBy, but instead of returning a list of values, returns a count for the number of values in that group. .*/
+       
+      var people = _.map( getAllRows(), function( row ) {
+        return {
+          id: row.id,
+          name: row.childNodes[1].textContent,
+          age: row.childNodes[3].textContent,
+          city: row.childNodes[5].textContent,
+          gender: row.childNodes[7].textContent
+        };
+      });
+      
+      var peopleCityGroup = _.countBy( people, "city" );
+      console.log ("\tusing _.countBy(  )...", peopleCityGroup, "\n");
+      
+      var peopleGenderGroup = _.countBy( people, "gender" );
+      console.log ("\tusing _.countBy(  )...", peopleGenderGroup, "\n");
+      
+      var peopleAgeGroup = _.countBy( people, function( person, index, originalPeople ) {
+      
+        var fAge = parseFloat(person.age);
+        fAge = fAge / 10.0;
+        fAge = Math.floor(fAge);
+        fAge *= 10;
+        return String(fAge) + " to " + String(fAge + 9);
+        
+      });
+      console.log ("\tusing _.countBy(  )...", peopleAgeGroup, "\n");
+      
+      // helper functions
+
+      function getAllRows() {
+        var childNodes = getFirstNodeByTagName("tbody").childNodes;
+        return _.filter( childNodes, function(item) {
+          return item.tagName === "TR";
+        });
+      }
+
+      function getFirstNodeByTagName( tagName ) {
+        return _.first( document.getElementsByTagName ( tagName ));
+      }
+
+    })( document );
+  </script>
+</body>
+</html>

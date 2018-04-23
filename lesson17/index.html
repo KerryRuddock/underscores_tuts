@@ -63,7 +63,7 @@
       "use strict";
 
       /* _.groupBy(list, iteratee, [context])
-        Splits a collection into sets, grouped by the result of running each value through iteratee.    If iteratee is a string instead of a function, groups by the property named by iteratee on each of the values.*/
+        Splits a collection into sets, grouped by the result of running each value through iteratee.    If iteratee is a string instead of a function, groups by the property named by iteratee on each of the values. Remember: Each invocation of iteratee is called with three arguments(element, index, list)  */
 
       var ageCol = document.getElementById("thAge");
       var cityCol =  document.getElementById("thCity");
@@ -73,15 +73,15 @@
       genderCol.addEventListener("click", groupCol, false );
 
       function groupCol() {
-        var columnNodeIndex = ( this.cellIndex * 2) + 1;
-        var groupByFuncIndex = this.cellIndex -1;
-        var rows = getAllRows();
+        var columnNodeIndex = ( this.cellIndex * 2) + 1;  // see MDN: HTMLTableCellElement.cellIndex 
+        var groupByFuncIndex = this.cellIndex -1;         // cell's position in cells collection of the <tr>
+        var rows = getAllRows();                          // array of <TR> elements
 
         // array of group by functions, one for each table columnNodeIndex
-        var groupByValueFuncs = getGroupByValueFuncs();
+        var groupByValueFuncs = getGroupByValueFuncs();   // Columns: Age, City, Gender
 
-        // add group by code here...
-        var groupedRows = _.groupBy( rows, function( row, index, originalRows ) {
+        // .groupBy returns an object where each property is group of a particular set (ie. Column clicked on)
+        var groupedRows = _.groupBy( rows, function( row ) {
             return groupByValueFuncs[groupByFuncIndex] (
               row.childNodes[columnNodeIndex].textContent
             );
@@ -129,7 +129,7 @@
       function getAllRows() {
         var childNodes = document.getElementsByTagName("tbody")[0].childNodes;
         return _.filter( childNodes, function(item) {
-          return item.tagName === "TR";
+          return item.tagName === "TR" && !( item.getAttribute("data-group-header")); ;
           // DONT USE CODE IN VIDEO: return item.tagName === "TR" && item.getAttribute("data-group-header");
         });
       }

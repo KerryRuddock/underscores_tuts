@@ -19,3 +19,9 @@ Each lesson# (video) is an html file with script calling underscore functions.
 ### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson15 - _.where, _.findWhere
 ### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson16 - _.min, _.max
 ### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson17 - _.groupBy
+### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson18 -_.sample, _.size
+### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson19 - _.sortBy
+### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson20 - _.indexBy
+### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson21 - _.countBy
+### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson22 - _.partition
+### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson23 - _.toArray
