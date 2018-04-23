@@ -1,5 +1,5 @@
 # underscores_tuts
-You Tube series by TopTal on learning underscore.js
+You Tube series by TopTal on learning underscore.js - 23 lessons in all.
 Each lesson# (video) is an html file with script calling underscore functions.
 
 ### <img src="images/tab_folder.jpg" style="vertical-align:top" width="64">Lesson01 - _.first, _.initial, _.last, _.rest
